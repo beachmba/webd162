@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+Assignment: Final Project
+Author: Michael Louis
+Date: August 7, 2017
+Filename: map.html
+Description: Two maps to my house
+Comments:
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Maps To Mike's</title>
+    <link href="../Styles/final.css" rel="stylesheet">
+    <style>
+        #map {
+            height: 700px;
+            width: 100%;
+        }
+
+    </style>
+</head>
+
+<body id="mappage">
+    <h1 class="header">Three Maps to Mike's!!</h1>
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../Pages/blackjack.html">Blackjack</a></li>
+            <li><a href="../Pages/pirates.html">Pirate House</a></li>
+            <li><a href="../Pages/dogs.html">Frisbee Dogs</a></li>
+            <li><a href="../Pages/map.html">Maps To Mike's</a></li>
+        </ul>
+    </nav>
+    <h2>Three maps: One uses a link to a Google map, another uses JavaScript with an API Key, and one uses JavaScript, no API Key</h2>
+    <br>
+    <h2>Click <a href="https://www.google.com/maps/place/3932+Bayside+Walk,+San+Diego,+CA+92109/@32.7864848,-117.2586793,15z/data=!4m13!1m7!3m6!1s0x80dc01ef7771d949:0x60a8e0893e6be25c!2s3932+Bayside+Walk,+San+Diego,+CA+92109!3b1!8m2!3d32.7880256!4d-117.2526735!3m4!1s0x80dc01ef7771d949:0x60a8e0893e6be25c!8m2!3d32.7880256!4d-117.2526735"> here </a>for a map which links to a Google page with Directions!!</h2><br>
+
+    <br>
+    <h2> Map #2, uses JavaScript with an API key:</h2>
+    <!-- here is map #2, uses API key -->
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            var uluru = {
+                lat: 32.7866,
+                lng: -117.2525
+            };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPKDzzyPUW35GKQbPaZyUDAtjo_y2fiXc&callback=initMap">
+
+
+    </script>
+
+    <br><br><br>
+
+    <!--  ANOTHER MAP!! No API key! -->
+    <h2> Map #3, does not use an API key:</h2>
+    <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+
+    <div style='overflow:hidden;height:440px;width:700px;'>
+        <div id='gmap_canvas' style='height:440px;width:700px;'></div>
+        <div><small><a href="http://embedgooglemaps.com">Click here to generate your map!</a></small></div>
+        <div><small><a href="http://www.gaudeamus.si/">cheap flights to amsterdam</a></small></div>
+       <!-- <style>
+            #gmap_canvas img {
+                max-width: none!important;
+                background: none!important
+            }
+
+        </style>
+-->
+    </div>
+    <script type='text/javascript'>
+        function init_map() {
+            var myOptions = {
+                zoom: 14,
+                center: new google.maps.LatLng(32.7880256, -117.25267350000001),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+            marker = new google.maps.Marker({
+                map: map,
+                position: new google.maps.LatLng(32.7880256, -117.25267350000001)
+            });
+            infowindow = new google.maps.InfoWindow({
+                content: '<strong>Title</strong><br>3932 bayside walk, san diego, ca<br>'
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map, marker);
+            });
+            infowindow.open(map, marker);
+        }
+        google.maps.event.addDomListener(window, 'load', init_map);
+
+    </script>
+
+
+
+
+</body>
+
+</html>
